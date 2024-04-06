@@ -10,6 +10,7 @@ import { useProducts } from "../context/ProductContext";
 import {
   createQueryObject,
   filterProducts,
+  getInitialQuery,
   searchProducts,
 } from "../helper/helper";
 import styles from "./ProductPage.module.css";
@@ -25,10 +26,21 @@ function ProductsPage(props) {
 
   useEffect(() => {
     setDisplayed(products);
+
+    // getInitialQuery:
+    // const query = {};
+    // const category = searchParams.get("category");
+    // const search = searchParams.get("search");
+    // if (category) query.category = category;
+    // if (search) query.search = search;
+    // setQuery(query)
+
+    setQuery(getInitialQuery(searchParams));
   }, [products]);
 
   useEffect(() => {
     setSearchParams(query);
+    setSearch(query.search || "");
     let finalProducts = searchProducts(products, query.search);
     finalProducts = filterProducts(finalProducts, query.category);
     setDisplayed(finalProducts);
