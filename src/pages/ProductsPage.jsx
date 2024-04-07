@@ -49,13 +49,13 @@ function ProductsPage(props) {
     <>
       <SearchBox search={search} setSearch={setSearch} setQuery={setQuery} />
       <div className={styles.container}>
+        <Sidebar query={query} setQuery={setQuery} />
         <div className={styles.products}>
           {!displayed.length && <Loader />}
           {displayed.map((p) => (
             <Card key={p.id} data={p} />
           ))}
         </div>
-        <Sidebar setQuery={setQuery} />
       </div>
     </>
   );
