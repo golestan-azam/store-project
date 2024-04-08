@@ -47,7 +47,17 @@ const reducer = (state, action) => {
         ...sumProducts(state.selectedItems),
       };
 
-    
+    case "DECREASE":
+      const decreaseIndex = state.selectedItems.findIndex(
+        (item) => item.id === action.payload.id
+      );
+
+      state.selectedItems[decreaseIndex].quantity--;
+
+      return {
+        ...state,
+        ...sumProducts(state.selectedItems),
+      };
 
     default:
       throw new Error("Invalid Action!");
