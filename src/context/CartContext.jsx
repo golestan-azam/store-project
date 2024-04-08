@@ -9,8 +9,6 @@ const initialState = {
 };
 
 const reducer = (state, action) => {
-  console.log(action);
-
   switch (action.type) {
     case "ADD_ITEM":
       if (!state.selectedItems.find((item) => item.id === action.payload.id)) {
@@ -57,6 +55,14 @@ const reducer = (state, action) => {
       return {
         ...state,
         ...sumProducts(state.selectedItems),
+      };
+
+    case "CHECKOUT":
+      return {
+        selectedItems: [],
+        itemsCounter: 0,
+        total: 0,
+        checkout: true,
       };
 
     default:
